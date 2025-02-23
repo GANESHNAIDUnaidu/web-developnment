@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            text-align: center;
+            animation: slideIn 0.6s ease-in-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        h2 {
+            color: #333;
+            font-weight: 600;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        input:focus {
+            border-color: #0072ff;
+            box-shadow: 0 0 8px rgba(0, 114, 255, 0.5);
+        }
+        button {
+            width: 80%;
+            padding: 10px;
+            background: linear-gradient(to right, #28a745, #218838);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: transform 0.3s, background 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to right, #218838, #28a745);
+        }
+        .otp-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .otp-container input {
+            width: 70%;
+        }
+        .otp-container button {
+            width: 25%;
+            padding: 6px;
+            font-size: 12px;
+        }
+        h3 {
+            color: #555;
+            font-weight: 500;
+        }
+        p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="button" onclick="loginWithPassword()">Login with Password</button>
+        </form>
+        <h3>OR</h3>
+        <form id="otpForm">
+            <input type="text" id="mobile" placeholder="Mobile Number" required maxlength="10" pattern="\d{10}">
+            <div class="otp-container">
+                <input type="text" id="otp" placeholder="Enter OTP" required>
+                <button type="button" onclick="sendOTP()">Send OTP</button>
+            </div>
+            <button type="button" onclick="loginWithOTP()">Login with OTP</button>
+        </form>
+        <p id="message" style="color: red;"></p>
+    </div>
+
+    <script>
+        function sendOTP() {
+            let mobile = document.getElementById("mobile").value;
+            if (/^\d{10}$/.test(mobile)) {
+                alert("OTP sent successfully!");
+            } else {
+                alert("Please enter a valid 10-digit mobile number.");
+            }
+        }
+
+        function loginWithPassword() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            if (username && password) {
+                alert("Login successful!");
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+
+        function loginWithOTP() {
+            let mobile = document.getElementById("mobile").value;
+            let otp = document.getElementById("otp").value;
+            if (/^\d{10}$/.test(mobile) && otp) {
+                alert("Login successful!");
+            } else {
+                alert("Please enter valid details.");
+            }
+        }
+    </script>
+</body>
+</html>
